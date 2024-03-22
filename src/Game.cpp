@@ -44,6 +44,7 @@ void Game::Initialize() {
 }
 
 void Game::Run() {
+    Setup();
     while (isRunning) {
         ProcessInput();
         Update();
@@ -67,15 +68,31 @@ void Game::ProcessInput() {
     }
 }
 
+void Game::Setup() {
+}
+
 void Game::Update() {
     // TODO: Update game objects
 }
 
 void Game::Render() {
-    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    SDL_SetRenderDrawColor(renderer, 21, 21, 21, 255);
     SDL_RenderClear(renderer);
 
     // TODO: Render all game objects
+
+    // Draw a rectangle
+    //SDL_Rect player = {10, 10, 20, 20};
+    //SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+    //SDL_RenderFillRect(renderer, &player);
+
+    // Draw a PNG texture
+    SDL_Surface* surface = IMG_Load("./assets/images/tank-tiger-right.png");
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    SDL_FreeSurface(surface);
+    SDL_Rect dstRect = {10, 10, 32, 32};
+    SDL_RenderCopy(renderer, texture, NULL, &dstRect);
+    SDL_DestroyTexture(texture);
 
     SDL_RenderPresent(renderer);
 }

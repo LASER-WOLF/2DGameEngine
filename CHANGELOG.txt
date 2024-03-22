@@ -1,12 +1,25 @@
+v3
+  # Course section 4: Rendering SDL Objects
+    + Added drawing of a test rectangle using the built-in SDL function
+    + Added test rendering of a png image
+    (section completed)
+
 v2
-    - Created Game.h/Game.cpp with the Game class
-    - Added SDL initialization and window/renderer setup in the Initialize() function
+  # Course section 3: Displaying the Game Window
+    + Created Game.h/Game.cpp with the Game class
+    + Added SDL initialization and window/renderer setup in the Initialize() function
       in the Game class.
-    - Added cleanup in Game::Destroy()
-    - Added event pulling in Game::ProcessInput()
-    - Added rendering of a solid red screen in Game:Render()
-    - Changed the window size to borderless fullscreen
-    - Changed the video mode to fullscreen ("true" fullscreen)
+    + Added cleanup in Game::Destroy()
+    + Added event pulling in Game::ProcessInput()
+    + Added rendering of a solid red screen in Game:Render()
+    + Changed the window size to borderless fullscreen
+    + Changed the video mode to fullscreen ("true" fullscreen)
+    (section completed)
 
 v1
-    - Initial set up of folder structure, assets, libraries, Makefile
+  # Course section 1: Introduction
+    (section completed)
+    
+  # Course section 2: Libraries & Dependencies
+    + Initial set up of folder structure, assets, libraries, Makefile
+    (section completed)

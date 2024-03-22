@@ -16,7 +16,7 @@
 
    [X]  #1: Introduction
    [X]  #2: Libraries & Dependencies
-   [-]  #3: Displaying the Game Window
+   [X]  #3: Displaying the Game Window
    [-]  #4: Rendering SDL Objects
    [-]  #5: Fixing the Game Time Step
    [-]  #6: Logger
@@ -125,6 +125,10 @@
    invoked when the object is destroyed.
    If making a new object without using the "new" keyword the object will be 
    stored in the stack and be detroyed when the scope ends.
+
+ - SDL is using double-buffered rendering:
+   One buffer is displayed on screen while the other buffer is prepared
+   and swapped when it's ready to be presented.
 
 ///////////////////////////////////////////////////////////////////////////////
 // #3 | OTHER NOTES

@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 class Game {
     private:
@@ -15,6 +16,7 @@ class Game {
         void Initialize();
         void Run();
         void ProcessInput();
+        void Setup();
         void Update();
         void Render();
         void Destroy();
