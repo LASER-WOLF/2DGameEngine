@@ -1,2 +1,12 @@
+v2
+    - Created Game.h/Game.cpp with the Game class
+    - Added SDL initialization and window/renderer setup in the Initialize() function
+      in the Game class.
+    - Added cleanup in Game::Destroy()
+    - Added event pulling in Game::ProcessInput()
+    - Added rendering of a solid red screen in Game:Render()
+    - Changed the window size to borderless fullscreen
+    - Changed the video mode to fullscreen ("true" fullscreen)
+
 v1
     - Initial set up of folder structure, assets, libraries, Makefile

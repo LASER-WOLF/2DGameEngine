@@ -109,12 +109,31 @@
    Implementation files (.cpp) contain the body of the function defined in the
    header file.
 
+ - Header protection guard:
+     Makes sure a header file is only included once.
+     Always remember to include a protection guard in header files.
+       #ifndef (name)
+       #define (name)
+       ...
+       #endif
+     Or:
+       #pragma once
+
  - This project will use the ECS (Entity component system) programming pattern
 
+ - When making an object the contructor is invoked and the destructor is
+   invoked when the object is destroyed.
+   If making a new object without using the "new" keyword the object will be 
+   stored in the stack and be detroyed when the scope ends.
 
 ///////////////////////////////////////////////////////////////////////////////
 // #3 | OTHER NOTES
 ///////////////////////////////////////////////////////////////////////////////
+
+ - Game loop: Process input -> Update Game -> Render (the holy trinity)
+
+ - The game loop needs to be steady capped at a desired FPS witha a 
+   fixed time step capped.
 
  - ...
 

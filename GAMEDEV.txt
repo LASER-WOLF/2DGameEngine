@@ -22,6 +22,7 @@
     - Raycasting Engine Programming with C:   https://pikuma.com/courses/raycasting-engine-tutorial-algorithm-javascript
     - NES Programming with 6502 Assembly:     https://pikuma.com/courses/nes-game-programming-tutorial
     - Master the Linux Terminal & Bash Shell: https://pikuma.com/courses/linux-unix-command-line-bash-shell
+    - Understanding Bitshifting Operations:   https://pikuma.com/courses/bit-shifting-operator-tutorial
 
 # Godot
  GDQuest: https://school.gdquest.com
