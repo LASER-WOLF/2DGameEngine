@@ -1,0 +1,128 @@
+///////////////////////////////////////////////////////////////////////////////
+// This document contains course notes for the course:
+// "C++ Game Engine Programming" by Gustavo Pezzi
+// https://pikuma.com/courses/cpp-2d-game-engine-development
+///////////////////////////////////////////////////////////////////////////////
+
+ SECTIONS:
+   #1: COURSE OVERVIEW
+   #2: C++
+   #3: OTHER NOTES
+   #4: LINKS AND RESOURCES
+
+///////////////////////////////////////////////////////////////////////////////
+// #1 | COURSE OVERVIEW:
+///////////////////////////////////////////////////////////////////////////////
+
+   [X]  #1: Introduction
+   [X]  #2: Libraries & Dependencies
+   [-]  #3: Displaying the Game Window
+   [-]  #4: Rendering SDL Objects
+   [-]  #5: Fixing the Game Time Step
+   [-]  #6: Logger
+   [-]  #7: Files & Folder Structure
+   [-]  #8: Organizing Game Objects
+   [-]  #9: ECS Design
+   [-] #10: ECS Implementation
+   [-] #11: Creating Entities & Components
+   [-] #12: Creating Systems
+   [-] #13: Managing Assets
+   [-] #14: Animation System
+   [-] #15: Collision System
+   [-] #16: Killing Entities
+   [-] #17: Event System
+   [-] #18: Other Useful Components & Systems
+   [-] #19: Tagging & Grouping Entities
+   [-] #20: Data-Oriented Design
+   [-] #21: Displaying True-Type Fonts
+   [-] #22: Dear ImGui
+   [-] #23: Culling & Map Control
+   [-] #24: Lua Scripting
+   [-] #25: Next Steps
+   [-] #26: Bonus: The Map Editor
+   [-] #27: Moving Forward
+  
+   [X] COMPLETED / [-] NOT COMPLETED
+
+
+///////////////////////////////////////////////////////////////////////////////
+// #2 | C++
+///////////////////////////////////////////////////////////////////////////////
+
+ - Compiling:
+     C++ Source Code 
+          -> 
+     Preprocessor
+       Scans source code, checks for hashtag statements (#include, #define, etc)
+          -> 
+     Compiler
+       Checks if everything makes sense, obeys the rules of C++ syntax, 
+       name of functions, order of parameters, etc.
+          -> 
+     Linker
+       Bundling everything together, link all the implementations of
+       the libraries together
+          ->
+     Executable
+
+ - External libraries can be included in two ways:
+     1 - Source code of the library:
+          The source code of the libraries need to be placed in the project
+          folder (e.g. in a "libs" folder) and included in the C++ file using
+          #include <(library name)/(header file).hpp> and the compiler command 
+          -I"./libs" is used to include the source code folder when compiling.
+     2 - Pre-compiled binaries (faster than compiling on each build):
+           The libraries (for this project SDL2 and Lua are pre-compiled) need
+           to be installed on the system, included in the C++ file by using 
+           #include <(library name)/(header file).hpp> and linked in the
+           compiler by using -l(library name) in the command when compiling.
+ 
+ - This project will use modern C++ with the C++17 standard.
+
+ - The project will use the following libraries:
+     SDL2:       (pre-compiled) rendering and input
+     GLM:        (source code)  math helper
+     Dear ImGui: (source code)  to create UI
+     Sol:        (source code)  binding for modern C+++ & Lua
+
+ - Command to compile the project using the GNU compiler (simple example):
+     g++ -Wall -std=c++17 src/Main.cpp -lSDL2 -o gameengine
+      |     |       |            |        |          |      
+      |     |       |            |        |    Output executable file
+      |     |       |            |     Linked library 
+      |     |       |   Included C++ files for the project
+      |     |   C++ standard
+      | Show errors
+  The compiler
+
+ - To make things easier compiling rules will be written in the Makefile.
+     "build" for building the project
+     "clean" to delete compiled files
+     "run" to run the project
+     (To build the project simply run the "make build" command)
+
+ - The C++ file is divided into two files.
+   Header file (.h) and Implementation File (.cpp).
+   The header file only contain the function prototypes (name of the function,
+   return value and parameters) and no implementation. 
+   Similar to the "table of contents" section in a book.
+   Implementation files (.cpp) contain the body of the function defined in the
+   header file.
+
+ - This project will use the ECS (Entity component system) programming pattern
+
+
+///////////////////////////////////////////////////////////////////////////////
+// #3 | OTHER NOTES
+///////////////////////////////////////////////////////////////////////////////
+
+ - ...
+
+
+///////////////////////////////////////////////////////////////////////////////
+// #4 | LINKS AND RESOURCES
+///////////////////////////////////////////////////////////////////////////////
+
+ - ...
+
+
