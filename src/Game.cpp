@@ -1,16 +1,19 @@
 #include "Game.h"
+#include "Logger.h"
 #include <iostream>
 
 Game::Game() {
     isRunning = false;
+    Logger::Log("Game constructor called!");
 }
 
 Game::~Game() {
+    Logger::Log("Game destructor called!");
 }
 
 void Game::Initialize() {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-        std::cerr << "Error initializing SDL." << std::endl;
+        Logger::Err("Error initializing SDL.");
         return;
     }
     SDL_DisplayMode displayMode;
@@ -26,7 +29,7 @@ void Game::Initialize() {
         SDL_WINDOW_BORDERLESS
     );
     if (!window) {
-        std::cerr << "Error creating SDL window." << std::endl;
+        Logger::Err("Error creating SDL window.");
         return;
     }
     renderer = SDL_CreateRenderer(
@@ -35,7 +38,7 @@ void Game::Initialize() {
         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
     );
     if (!renderer) {
-        std::cerr << "Error creating SDL renderer." << std::endl;
+        Logger::Err("Error creating SDL renderer.");
         return;
     }
     SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
@@ -78,7 +81,6 @@ void Game::Setup() {
 
 void Game::Update() {
     // Cap the framerate at desired maximum
-    //while (!SDL_TICKS_PASSED(SDL_GetTicks(), millisecsPreviousFrame + MILLISECS_PER_FRAME));
     int timeToWait = MILLISECS_PER_FRAME - (SDL_GetTicks() - millisecsPreviousFrame);
     if (timeToWait > 0 && timeToWait <= MILLISECS_PER_FRAME) {
         SDL_Delay(timeToWait);
@@ -97,13 +99,6 @@ void Game::Update() {
 void Game::Render() {
     SDL_SetRenderDrawColor(renderer, 21, 21, 21, 255);
     SDL_RenderClear(renderer);
-
-    // TODO: Render all game objects
-
-    // Draw a rectangle
-    //SDL_Rect player = {10, 10, 20, 20};
-    //SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-    //SDL_RenderFillRect(renderer, &player);
 
     // Draw a PNG texture
     SDL_Surface* surface = IMG_Load("./assets/images/tank-tiger-right.png");

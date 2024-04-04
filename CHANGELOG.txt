@@ -1,3 +1,8 @@
+v5
+  # Course section 6: Logger
+    + Added a Logger class for logging with Log() and Err() functions
+    (section completed)
+
 v4
   # Course section 5: Fixing the Game Time Step
     + Added player position and velocity vectors
@@ -7,6 +12,7 @@ v4
       in SDL function SDL_Delay()
     + Added variable delta-time and implemented position updates based on 
       delta-time factor
+    (section completed)
 v3
   # Course section 4: Rendering SDL Objects
     + Added drawing of a test rectangle using the built-in SDL function

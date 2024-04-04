@@ -156,6 +156,15 @@
      "Fix Your Timestep!" by Glenn Fiedler
      https://gafferongames.com/post/fix_your_timestep/
 
+ - For this project we'll make our own simple Logger class for logging,
+   but for something to use in real life production a third party library might
+   be a better option with scalability and performance in mind.
+
+ - Popular logging libraries:
+    - SPDLog library (for C++ projects) here: https://github.com/gabime/spdlog
+    - Log.c library (for C99 projects) here: https://github.com/rxi/log.c
+
+
 ///////////////////////////////////////////////////////////////////////////////
 // #4 | LINKS AND RESOURCES
 ///////////////////////////////////////////////////////////////////////////////
