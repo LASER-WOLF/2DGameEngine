@@ -136,11 +136,25 @@
 
  - Game loop: Process input -> Update Game -> Render (the holy trinity)
 
- - The game loop needs to be steady capped at a desired FPS witha a 
-   fixed time step capped.
+ - The game loop needs to be steady capped at a desired FPS with a 
+   fixed time step. We can use SDL_Delay() to achieve this.
 
- - ...
+ - All position/physics updates need to take into account how much time has
+   passed since last frame and multiply the movement by this factor to achieve
+   the same results on different framerates. This is called Delta-Time.
 
+ - There are two types of Delta-Time:
+   Variable Delta-Time:
+     + Con: Non-deterministic
+     + Pro: Game time equals real time
+   Constant Delta-Time:
+     + Con: Fast game on high FPS, slow game on low FPS
+     + Pro: Deterministic
+   For this project we will start by implementing a simple Variable Delta-Time.
+
+ - There are smarter and fancier ways to implement a controlled time step:
+     "Fix Your Timestep!" by Glenn Fiedler
+     https://gafferongames.com/post/fix_your_timestep/
 
 ///////////////////////////////////////////////////////////////////////////////
 // #4 | LINKS AND RESOURCES

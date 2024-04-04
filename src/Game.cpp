@@ -68,11 +68,30 @@ void Game::ProcessInput() {
     }
 }
 
+glm::vec2 playerPositon;
+glm::vec2 playerVelocity;
+
 void Game::Setup() {
+    playerPositon = glm::vec2(10.0, 20.0);
+    playerVelocity = glm::vec2(100.0, 0.0);
 }
 
 void Game::Update() {
-    // TODO: Update game objects
+    // Cap the framerate at desired maximum
+    //while (!SDL_TICKS_PASSED(SDL_GetTicks(), millisecsPreviousFrame + MILLISECS_PER_FRAME));
+    int timeToWait = MILLISECS_PER_FRAME - (SDL_GetTicks() - millisecsPreviousFrame);
+    if (timeToWait > 0 && timeToWait <= MILLISECS_PER_FRAME) {
+        SDL_Delay(timeToWait);
+    }
+
+    // The difference in ticks since the last frame, converted to seconds
+    double deltaTime = (SDL_GetTicks() - millisecsPreviousFrame) / 1000.0;
+
+    // Store the "previous" frame time
+    millisecsPreviousFrame = SDL_GetTicks();
+
+    playerPositon.x += playerVelocity.x * deltaTime;
+    playerPositon.y += playerVelocity.y * deltaTime;
 }
 
 void Game::Render() {
@@ -90,7 +109,12 @@ void Game::Render() {
     SDL_Surface* surface = IMG_Load("./assets/images/tank-tiger-right.png");
     SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
     SDL_FreeSurface(surface);
-    SDL_Rect dstRect = {10, 10, 32, 32};
+    SDL_Rect dstRect = {
+        static_cast<int>(playerPositon.x), 
+        static_cast<int>(playerPositon.y), 
+        32, 
+        32
+    };
     SDL_RenderCopy(renderer, texture, NULL, &dstRect);
     SDL_DestroyTexture(texture);
 

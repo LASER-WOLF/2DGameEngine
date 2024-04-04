@@ -1,3 +1,12 @@
+v4
+  # Course section 5: Fixing the Game Time Step
+    + Added player position and velocity vectors
+    + Implemented fixed time step in the Update() function by using a while 
+      loop to cap the framerate
+    + Improved the fixed time step by replacing the while loop with the built
+      in SDL function SDL_Delay()
+    + Added variable delta-time and implemented position updates based on 
+      delta-time factor
 v3
   # Course section 4: Rendering SDL Objects
     + Added drawing of a test rectangle using the built-in SDL function
