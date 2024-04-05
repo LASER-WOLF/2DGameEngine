@@ -17,9 +17,9 @@
    [X]  #1: Introduction
    [X]  #2: Libraries & Dependencies
    [X]  #3: Displaying the Game Window
-   [-]  #4: Rendering SDL Objects
-   [-]  #5: Fixing the Game Time Step
-   [-]  #6: Logger
+   [X]  #4: Rendering SDL Objects
+   [X]  #5: Fixing the Game Time Step
+   [X]  #6: Logger
    [-]  #7: Files & Folder Structure
    [-]  #8: Organizing Game Objects
    [-]  #9: ECS Design
@@ -129,6 +129,145 @@
  - SDL is using double-buffered rendering:
    One buffer is displayed on screen while the other buffer is prepared
    and swapped when it's ready to be presented.
+ 
+ - For this project we'll make our own simple Logger class for logging,
+   but for something to use in real life production a third party library might
+   be a better option with scalability and performance in mind.
+
+ - Popular logging libraries:
+    + SPDLog library (for C++ projects) here: https://github.com/gabime/spdlog
+    + Log.c library (for C99 projects) here: https://github.com/rxi/log.c
+
+ - Object-oriented programming and the stack:
+    + The stack is a place in memory where we can push values and pop values.
+    + ExampleClass example // Creating an object in the stack (without the "new" 
+      keyword), it will automatically be destroyed when the scope ends.
+    + In the stack, the allocation happens on contigous blocks of memory.
+      It can grow and shrink when we push and pop values.
+    + The size of memory to be allocated is know to the compiler.
+    + The stack has a fixed size (OS-dependent (Linux gives 2MB per thread by
+      default))
+    + We don't have to worry about memory allocation/dealloation of 
+      stack variables
+
+ - Object-oriented programming and the heap:
+    + The heap is also memory, we can allocate more and more memory as needed
+    + In the heap we are responsible for deallocating the memory when
+      we don't need it any more. If we forget to do this we get memory leaks!
+    + ExampleClass* example = new ExampleClass(); // Creates an object in the
+      heap using the "new" keyword. It needs to be explicitly deleted.
+    + delete example // deletes the object deallocates the memory
+    + In the heap, memory is allocated dynamically and it's usually
+      not contigous
+    + The heap has no fixed-size restrictions, but heap handling is slower
+      than stack handling
+    + The programmer is responsible for remembering to deallocate the object
+      in memory
+    + The "new" keyword replaces how it was done previously in C with
+      memory allocation (malloc) and Initialization (constructor).
+      The "new" keyword allocates memory and calls the constructor.
+    + the "delete" keyword replaces how it was done previously in C with
+      Deinitialization (destructor) and Deallocation (free).
+      The "delete" keyword calls the destructor and deallocates memory.
+
+ - Examples of C++ Object Creation:
+    
+    + We create a single Enemy object in the stack and we don't need to 
+      explicitly delete the object since it will be destroyed automatically 
+      once we leave the scope of the function block:
+
+      class Enemy {
+          public:
+              Enemy()  { /* Constructor */ }
+              ~Enemy() { /* Destructor */ }
+              
+              ...
+              ...
+              ...
+      };
+
+      void Run() {
+          Enemy e;
+
+          // Here we can use the object
+      }
+    
+    + We create a single Bullet object dunamically in the heap and call its
+      constructor by using the new keyword, and we also need to explicitly
+      call delete to destroy and free the object:
+
+      class Bullet {
+          public:
+              Bullet()  { /* Constructor */}
+              ~Bullet() { /* Destructor */}
+
+              ...
+              ...
+              ...
+      };
+
+      void Run(){
+          Bullet* b = new Bullet;
+
+          // Here we can use the object
+
+          delete b;
+      }
+
+    + We create a static array of 100 Particle objects dynamically and invoke
+      their constructors by using new[100]. We also need to explicitly call
+      delete[] to destroy all the objects in the array:
+
+      class Particle {
+          public:
+              Particle()  { /* Constructor */}
+              ~Particle() { /* Destructor */}
+
+              ...
+              ...
+              ...
+      };
+
+      void Run(){
+          Particle* p = new Particle[100];
+
+          // Here we can use the array
+
+          delete[] p;
+      }
+
+    + Note: These examples use raw pointers to deal with C++ objects.
+      Modern C++ uses smart pointers to help programmers with the issue of
+      having to remember to manually destroy objects and in this project we
+      will use smart pointers.
+
+ - Organizing Game Objects:
+    + Game programming is a good sandbox to learn and practice the ideas of
+      object-oriented programming (OOP).
+    + In games there are a lot of things: Items, characters, bullets, etc.
+      This can go under different names in different game engines:
+      "Actors", "GameObject" (Unity), etc.
+      For our project we will name it Entity.
+
+ - Object Inheritance Design:
+
+    + At first glance it might seem like a good approach, but it is in fact
+      not super perfect.
+
+                           Thing
+             ("game object", "actor", "entity")
+       Everything inherits from the base parent class.
+              /        |          |         \
+             /         |          |          \
+          Player     Enemy     Obstacle     Light
+
+    + Most game engines do NOT use the inheritance approach.
+      Because the different types of entities might be very different
+      and have few similarities to use in the base class.
+      Multiple inheritance issue in C++ (diamond inheritance).
+
+ - Component-Based Design:
+    + ...
 
 ///////////////////////////////////////////////////////////////////////////////
 // #3 | OTHER NOTES
@@ -145,24 +284,16 @@
 
  - There are two types of Delta-Time:
    Variable Delta-Time:
-     + Con: Non-deterministic
-     + Pro: Game time equals real time
+    + Con: Non-deterministic
+    + Pro: Game time equals real time
    Constant Delta-Time:
-     + Con: Fast game on high FPS, slow game on low FPS
-     + Pro: Deterministic
+    + Con: Fast game on high FPS, slow game on low FPS
+    + Pro: Deterministic
    For this project we will start by implementing a simple Variable Delta-Time.
 
  - There are smarter and fancier ways to implement a controlled time step:
      "Fix Your Timestep!" by Glenn Fiedler
      https://gafferongames.com/post/fix_your_timestep/
-
- - For this project we'll make our own simple Logger class for logging,
-   but for something to use in real life production a third party library might
-   be a better option with scalability and performance in mind.
-
- - Popular logging libraries:
-    - SPDLog library (for C++ projects) here: https://github.com/gabime/spdlog
-    - Log.c library (for C99 projects) here: https://github.com/rxi/log.c
 
 
 ///////////////////////////////////////////////////////////////////////////////

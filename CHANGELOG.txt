@@ -1,3 +1,7 @@
+v7
+  # Course section 8: Organizing Game Objects
+    (section completed)
+
 v6
   # Course section 7: Files & Folder Structure
     + Added subfolders in the src folder
