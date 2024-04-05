@@ -7,8 +7,10 @@
  SECTIONS:
    #1: COURSE OVERVIEW
    #2: C++
-   #3: OTHER NOTES
-   #4: LINKS AND RESOURCES
+   #3: OBJECT-ORIENTED PROGRAMMING (OOP)
+   #4: ENTITY-COMPONENT-SYSTEM (ECS) DESIGN
+   #5: OTHER NOTES
+   #6: LINKS AND RESOURCES
 
 ///////////////////////////////////////////////////////////////////////////////
 // #1 | COURSE OVERVIEW:
@@ -20,8 +22,8 @@
    [X]  #4: Rendering SDL Objects
    [X]  #5: Fixing the Game Time Step
    [X]  #6: Logger
-   [-]  #7: Files & Folder Structure
-   [-]  #8: Organizing Game Objects
+   [X]  #7: Files & Folder Structure
+   [X]  #8: Organizing Game Objects
    [-]  #9: ECS Design
    [-] #10: ECS Implementation
    [-] #11: Creating Entities & Components
@@ -119,13 +121,6 @@
      Or:
        #pragma once
 
- - This project will use the ECS (Entity component system) programming pattern
-
- - When making an object the contructor is invoked and the destructor is
-   invoked when the object is destroyed.
-   If making a new object without using the "new" keyword the object will be 
-   stored in the stack and be detroyed when the scope ends.
-
  - SDL is using double-buffered rendering:
    One buffer is displayed on screen while the other buffer is prepared
    and swapped when it's ready to be presented.
@@ -137,6 +132,21 @@
  - Popular logging libraries:
     + SPDLog library (for C++ projects) here: https://github.com/gabime/spdlog
     + Log.c library (for C99 projects) here: https://github.com/rxi/log.c
+
+///////////////////////////////////////////////////////////////////////////////
+// #4 | OBJECT-ORIENTED PROGRAMMING (OOP)
+///////////////////////////////////////////////////////////////////////////////
+
+ - Game programming is a good sandbox to learn and practice 
+   the ideas of OOP.
+
+ - Each class will often have it's own file, it is often considered good
+   practice, but not a requirement, and not always the best sollution
+
+ - When making an object the contructor is invoked and the destructor is
+   invoked when the object is destroyed.
+   If making a new object without using the "new" keyword the object will be 
+   stored in the stack and be detroyed when the scope ends.
 
  - Object-oriented programming and the stack:
     + The stack is a place in memory where we can push values and pop values.
@@ -241,13 +251,49 @@
       having to remember to manually destroy objects and in this project we
       will use smart pointers.
 
- - Organizing Game Objects:
-    + Game programming is a good sandbox to learn and practice the ideas of
-      object-oriented programming (OOP).
-    + In games there are a lot of things: Items, characters, bullets, etc.
-      This can go under different names in different game engines:
-      "Actors", "GameObject" (Unity), etc.
-      For our project we will name it Entity.
+ - Encapsulation: Getters and Setters.
+    + Getters for variables we are not going to change should be const
+
+ - Templates:
+   Helpful for working with generics.
+   Single template that will work for multiple types.
+   The implementation of templates are usually put in the header file!
+
+   Example code:
+
+     Prototype:
+       template <typename T> void RequireComponent();
+
+     Implementation:
+       template<typename T>
+       void System::RequireComponent() {
+           const auto componentId = Component<T>::GetId();
+           componentSignature.set(componentId);
+       }
+
+     Usage:
+       RequireComponent<TransformComponent>();
+       RequireComponent<BoxColliderComponent>();
+       RequireComponent<SpriteComponent>();
+
+ - In this project we'll use the C++17 erase-remove idiom to remove items
+   from a vector, but it's worth noting that in C++20 it is made easier
+   by using std::erase() or std::erase_if()
+
+ - Operator Overloading example:
+     Entity& operator =(const Entity& other) = default;
+     bool operator ==(const Entity& other) const {return id == other.id;} 
+     bool operator !=(const Entity& other) const {return id != other.id;} 
+     bool operator >(const Entity& other) const {return id > other.id;} 
+     bool operator <(const Entity& other) const {return id < other.id;} 
+   
+
+///////////////////////////////////////////////////////////////////////////////
+// #4 | ENTITY-COMPONENT-SYSTEM (ECS) DESIGN
+///////////////////////////////////////////////////////////////////////////////
+
+ - In games there are a lot of "things": 
+   Items, characters, bullets, light-sources, cameras, triggers, etc.
 
  - Object Inheritance Design:
 
@@ -267,10 +313,203 @@
       Multiple inheritance issue in C++ (diamond inheritance).
 
  - Component-Based Design:
-    + ...
+    + In the past 10 years or so component-based design has been very popular!
+    + Used by big game engines like Unity.
+    + Main entity that we can add different compenents to as needed.
+
+    Examples:
+      
+      + Entity (Player)
+        + TransformComponent
+        + SpriteComponent
+        + ColliderComponent
+      
+      + Entity (Enemy)
+        + TransformComponent
+        + SpriteComponent
+        + ProjectileEmitterComponent
+      
+      + Entity (DoorTrigger)
+        + TransformComponent
+        + ColliderComponent
+
+ - Two types of Component-Based design:
+    
+    + Object-oriented design:
+      + Easy for humans to understand.
+      + It has pointers to different places in memory all over the place
+        which is not very good for performance
+    
+    + Data-oriented design:
+      + Is more focused on performance where things are put on
+        a contigous space in memory
+ 
+ - Example of component-based object-orientated code:
+     
+     // Manages entities
+     class Registry {
+         vector<Entity*> entities;
+
+         void AddEntity(entity);
+         void RemoveEntity(entity);
+         void Update(deltaTime);
+         void Render();
+
+         ...
+     }
+
+     // Base entity class
+     class Entity {
+         vector<Component*> components; // List of components
+
+         void AddComponent<T>(component);
+         void Update(deltaTime);
+         void Render();
+
+         ...
+     }
+
+     // Base component class
+     class Component {
+         Entity* owner;
+
+         virtual Update();
+         virtual Render();
+     }
+
+     // Transform component class that inherits from the base component class
+     class TransformComponent: public Component {
+         glm::vec2 position;
+         glm::vec2 scale;
+         double rotation;
+
+         Update() override {
+             ...
+         }
+
+         Render() override {
+             ...
+         }
+     }
+     
+     // Collision component class that inherits from the base component class
+     class CollisionComponent: public Component {
+         SDL_Rect collider;
+
+         Update() override {
+             ...
+         }
+
+         Render() override {
+             ...
+         }
+     }
+
+ - Entity-Component-System (ECS) Design:
+    + For this project we will use the ECS programming pattern
+    + Connected to the idea of data-oriented design (performance)
+    + Unity is famous for using the ECS approach
+   
+    + Entities:
+      + Simply an ID (only represented by a numerical identifier)
+      + No components inside the entity!
+      + They represent the objects that populate the game scene
+
+    + Components:
+      + Components are pure data
+      + No behaviour, update or render functions. Just structs with data inside
+      + They are organized by the data itself rather than by entity.
+        This organization is the key difference between 
+        object-oriented and data-oriented design.
+
+    + Systems:
+      + Systems are the logic (code) that transforms components from one state
+        to the next state
+      + For example, a MovementSystem might update the positions of all moving
+        entities by their velocity since the previous frame
+      + Transformation machines: Changing components from one state to 
+        another state
+
+ - There are third-party ECS libraries that will have a lot better performance
+   than what we will create in this project, but writing our own ECS system 
+   from scratch will be a very good learning experience.
+
+ - Examples of ECS code:
+    
+    // Entities: Just an ID
+    class Entity {
+        int id;
+    }
+
+    // Components: Plain data (no logic)
+    struct TransformComponent {
+        glm::vec2 position;
+        glm::vec2 scale;
+        double rotation;
+    }
+
+    struct VelocityComponent {
+        glm::vec2 velocity;
+    }
+
+    // Systems: Perform logic on components and entities
+    class MovementSystem {
+        public:
+            MovementSystem() {
+                RequireComponent<TransformComponent>();
+                RequireComponent<VelocityComponent>();
+            }
+
+            void Update(double deltaTime) {
+                for (auto identity: GetEntities()) {
+                    VelocityComponent& velocity = entity.GetComponent<VelocityComponent>();
+                    TransformComponent& transform = entity.GetComponent<TransformComponent>();
+
+                    // Update entity's position based on its velocity
+                    transform.position.x += rigidbody.velocity.x * deltaTime;
+                    transform.position.y += rigidbody.velocity.y * deltaTime;
+                }
+            }
+    }
+
+ - Signature:
+    Systems are interested in some entities based on which components that 
+    entity has. We will make a 32 bit bitset called Signature that shows which 
+    components are enabled or disabled on an entity and which entities a system
+    is interested in. The signature will act like a "key" between the entities
+    and the systems.
+
+    Signature example (16 bits):
+    0 0 0 0 0 1 1 0
+     \
+      Each bit is mapped to a component id, if it's 0 the component is not
+      enabled on the entity, if it's 1 the component is enabled on the entity
+
+    Code example:
+    const unsigned int MAX_COMPONENTS = 32;
+    typedef std::bitset<MAX_COMPONENTS> Signature;
+
+    class Entity {
+        int id;
+    }
+
+    class Component {
+        int id;
+    }
+
+    class System {
+        private:
+            // Which components an entity must have for the system to 
+            // consider the entity
+            Signature componentSignature;
+
+            // List of all entities that the system is interested in
+            std::vector<Entity> entities;
+    };
+
 
 ///////////////////////////////////////////////////////////////////////////////
-// #3 | OTHER NOTES
+// #5 | OTHER NOTES
 ///////////////////////////////////////////////////////////////////////////////
 
  - Game loop: Process input -> Update Game -> Render (the holy trinity)
@@ -283,12 +522,15 @@
    the same results on different framerates. This is called Delta-Time.
 
  - There are two types of Delta-Time:
+   
    Variable Delta-Time:
     + Con: Non-deterministic
     + Pro: Game time equals real time
+   
    Constant Delta-Time:
     + Con: Fast game on high FPS, slow game on low FPS
     + Pro: Deterministic
+   
    For this project we will start by implementing a simple Variable Delta-Time.
 
  - There are smarter and fancier ways to implement a controlled time step:
@@ -297,7 +539,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// #4 | LINKS AND RESOURCES
+// #6 | LINKS AND RESOURCES
 ///////////////////////////////////////////////////////////////////////////////
 
  - ...

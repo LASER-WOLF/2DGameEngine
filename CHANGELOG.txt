@@ -1,3 +1,14 @@
+v8
+  # Course section 9: ECS Design
+    + Made the initial skeleton the ECS main file and folder structure
+    + Added sketch of Transform component
+    + Added sketch of Movement system
+    + Added Signature
+    + Added Template for System::RequireComponent
+    + Component setup with parent (base/interface) class to handle id
+    + Added implementation of System functions: AddEntityToSystem, 
+      RemoveEntityFromSystem, GetSystemEntities, GetComponentSignature
+    (section completed)
 v7
   # Course section 8: Organizing Game Objects
     (section completed)
