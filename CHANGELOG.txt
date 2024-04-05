@@ -1,3 +1,8 @@
+v6
+  # Course section 7: Files & Folder Structure
+    + Added subfolders in the src folder
+    + Added variables to the Makefile
+    (section completed)
 v5
   # Course section 6: Logger
     + Added a Logger class for logging with Log() and Err() functions

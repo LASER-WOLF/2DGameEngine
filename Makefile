@@ -1,6 +1,24 @@
+###############################################################################
+# Declare variables
+###############################################################################
+CC = g++
+LANG_STD = -std=c++17
+COMPILER_FLAGS = -Wall -Wfatal-errors
+INCLUDE_PATH = -I"./libs"
+SRC_FILES = ./src/*cpp \
+			./src/Game/*.cpp \
+			./src/Logger/*.cpp
+LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL_ttf -lSDL2_mixer -llua
+OBJ_NAME = gameengine
+
+###############################################################################
+# Declare rules
+###############################################################################
 build:
-	g++ -Wall -std=c++17 -I"./libs" src/*.cpp -lSDL2 -lSDL2_image -lSDL_ttf -lSDL2_mixer -llua -o gameengine
-clean:
-	rm gameengine
+	$(CC) $(COMPILER_FLAGS) $(LANG_STD) $(INCLUDE_PATH) $(SRC_FILES) $(LINKER_FLAGS) -o $(OBJ_NAME)
+
 run:
-	./gameengine
+	./$(OBJ_NAME)
+
+clean:
+	rm $(OBJ_NAME)
