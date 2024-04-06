@@ -1,3 +1,12 @@
+v9
+  # Course section 10: ECS Implementation
+    + Added Pool class (for storing a pool of components contigously)
+    + Started creating the Registry class (that will control the ECS)
+    + Added Entity creation and management to the Registry class
+    + Added templates to manage components in the Registry class: AddComponent,
+      RemoveComponent, HasComponent
+    + Added System functions
+    (section completed)
 v8
   # Course section 9: ECS Design
     + Made the initial skeleton the ECS main file and folder structure

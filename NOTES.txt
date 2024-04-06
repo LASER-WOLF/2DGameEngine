@@ -24,8 +24,8 @@
    [X]  #6: Logger
    [X]  #7: Files & Folder Structure
    [X]  #8: Organizing Game Objects
-   [-]  #9: ECS Design
-   [-] #10: ECS Implementation
+   [X]  #9: ECS Design
+   [X] #10: ECS Implementation
    [-] #11: Creating Entities & Components
    [-] #12: Creating Systems
    [-] #13: Managing Assets
@@ -137,26 +137,26 @@
 // #4 | OBJECT-ORIENTED PROGRAMMING (OOP)
 ///////////////////////////////////////////////////////////////////////////////
 
- - Game programming is a good sandbox to learn and practice 
-   the ideas of OOP.
+ - Game programming is a good sandbox to learn and practice the ideas of OOP.
 
- - Each class will often have it's own file, it is often considered good
+ - Each class will quite often have it's own file, it is often considered good
    practice, but not a requirement, and not always the best sollution
 
  - When making an object the contructor is invoked and the destructor is
-   invoked when the object is destroyed.
-   If making a new object without using the "new" keyword the object will be 
-   stored in the stack and be detroyed when the scope ends.
+   invoked when the object is destroyed. If making a new object without using 
+   the "new" keyword the object will be stored in the stack and 
+   be detroyed when the scope ends.
 
  - Object-oriented programming and the stack:
     + The stack is a place in memory where we can push values and pop values.
-    + ExampleClass example // Creating an object in the stack (without the "new" 
-      keyword), it will automatically be destroyed when the scope ends.
+    + ExampleClass example
+       + Creates an object in the stack  without the "new" keyword.
+         It will automatically be destroyed when the scope ends.
     + In the stack, the allocation happens on contigous blocks of memory.
       It can grow and shrink when we push and pop values.
     + The size of memory to be allocated is know to the compiler.
-    + The stack has a fixed size (OS-dependent (Linux gives 2MB per thread by
-      default))
+    + The stack has a fixed size (OS-dependent, as an example Linux gives
+      2MB per thread by default)
     + We don't have to worry about memory allocation/dealloation of 
       stack variables
 
@@ -164,9 +164,11 @@
     + The heap is also memory, we can allocate more and more memory as needed
     + In the heap we are responsible for deallocating the memory when
       we don't need it any more. If we forget to do this we get memory leaks!
-    + ExampleClass* example = new ExampleClass(); // Creates an object in the
-      heap using the "new" keyword. It needs to be explicitly deleted.
-    + delete example // deletes the object deallocates the memory
+    + ExampleClass* example = new ExampleClass();
+       + Creates an object in the heap using the "new" keyword. 
+         It needs to be explicitly deleted!
+    + delete example
+       + Deletes the object and deallocates the memory
     + In the heap, memory is allocated dynamically and it's usually
       not contigous
     + The heap has no fixed-size restrictions, but heap handling is slower
@@ -176,7 +178,7 @@
     + The "new" keyword replaces how it was done previously in C with
       memory allocation (malloc) and Initialization (constructor).
       The "new" keyword allocates memory and calls the constructor.
-    + the "delete" keyword replaces how it was done previously in C with
+    + The "delete" keyword replaces how it was done previously in C with
       Deinitialization (destructor) and Deallocation (free).
       The "delete" keyword calls the destructor and deallocates memory.
 
@@ -252,12 +254,12 @@
       will use smart pointers.
 
  - Encapsulation: Getters and Setters.
-    + Getters for variables we are not going to change should be const
+    + Getters for variables we are not going to change should always be const
 
  - Templates:
-   Helpful for working with generics.
    Single template that will work for multiple types.
-   The implementation of templates are usually put in the header file!
+   Helpful for working with generics.
+   The implementation of templates are usually put in the header file.
 
    Example code:
 
@@ -424,11 +426,9 @@
 
     + Systems:
       + Systems are the logic (code) that transforms components from one state
-        to the next state
+        to another state
       + For example, a MovementSystem might update the positions of all moving
         entities by their velocity since the previous frame
-      + Transformation machines: Changing components from one state to 
-        another state
 
  - There are third-party ECS libraries that will have a lot better performance
    than what we will create in this project, but writing our own ECS system 
@@ -474,7 +474,7 @@
 
  - Signature:
     Systems are interested in some entities based on which components that 
-    entity has. We will make a 32 bit bitset called Signature that shows which 
+    entity has. We will make a 32 bit long bitset called Signature that shows which 
     components are enabled or disabled on an entity and which entities a system
     is interested in. The signature will act like a "key" between the entities
     and the systems.
@@ -542,6 +542,9 @@
 // #6 | LINKS AND RESOURCES
 ///////////////////////////////////////////////////////////////////////////////
 
- - ...
+ - "How to make a simple entity-component-system in C++" by David Colson:
+    https://www.david-colson.com/2020/02/09/making-a-simple-ecs.html
 
+ - "Game Programming Patterns" by Robert Nystrom
+    https://gameprogrammingpatterns.com/
 
