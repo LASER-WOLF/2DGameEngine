@@ -1,3 +1,11 @@
+v12
+  # Course section 12: Creating Systems
+    + Added MovementSystem
+    + Implemented update of MovementSystem and Register in the Update
+      function of Game
+    + Added first implementation of SpriteComponent
+    + Added RenderSystem
+    (section completed)
 v11
   # Course section 11: Creating Entities & Components
     + Implemented Component functions to the entity class

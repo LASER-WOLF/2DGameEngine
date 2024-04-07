@@ -162,8 +162,7 @@
       + A shared pointer uses a reference count to keep track of how many 
         objects are still being referenced
 
- - Cyclic dependencies:
-   + Be aware of cyclic dependencies! Bad practice, use with exreme caution
+ - Cyclic dependencies: Be aware of cyclic dependencies! Not good.
 
 ///////////////////////////////////////////////////////////////////////////////
 // #4 | OBJECT-ORIENTED PROGRAMMING (OOP)
