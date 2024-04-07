@@ -1,10 +1,16 @@
 #include "Game.h"
 #include "../Logger/Logger.h"
 #include "../ECS/ECS.h"
+#include "../Components/TransformComponent.h"
+#include "../Components/RigidBodyComponent.h"
+#include <memory>
+#include <SDL2/SDL_image.h>
+#include <glm/glm.hpp>
 #include <iostream>
 
 Game::Game() {
     isRunning = false;
+    registry = std::make_unique<Registry>();
     Logger::Log("Game constructor called!");
 }
 
@@ -19,12 +25,12 @@ void Game::Initialize() {
     }
     SDL_DisplayMode displayMode;
     SDL_GetCurrentDisplayMode(0, &displayMode);
-    windowWidth = 800;//displayMode.w;
-    windowHeight = 600;//displayMode.h;
+    windowWidth = displayMode.w;
+    windowHeight = displayMode.h;
     window = SDL_CreateWindow(
-        NULL, 
-        SDL_WINDOWPOS_CENTERED, 
-        SDL_WINDOWPOS_CENTERED, 
+        NULL,
+        SDL_WINDOWPOS_CENTERED,
+        SDL_WINDOWPOS_CENTERED,
         windowWidth,
         windowHeight,
         SDL_WINDOW_BORDERLESS
@@ -43,17 +49,7 @@ void Game::Initialize() {
         return;
     }
     SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
-
     isRunning = true;
-}
-
-void Game::Run() {
-    Setup();
-    while (isRunning) {
-        ProcessInput();
-        Update();
-        Render();
-    }
 }
 
 void Game::ProcessInput() {
@@ -73,11 +69,13 @@ void Game::ProcessInput() {
 }
 
 void Game::Setup() {
-    // TODO:
-    // Entity tank = registry.CreateEntity();
-    // tank.AddComponent<TransformComponent>();
-    // tank.AddComponent<BoxColliderComponent>();
-    // tank.AddComponent<SpriteComponent>("./assets/images/tank.png");
+    // Create an entity
+    Entity tank = registry->CreateEntity();
+
+    // Add some comenents to that entity
+    //registry->AddComponent<TransformComponent>(tank, glm::vec2(10.0,30.0), glm::vec2(1.0, 1.0), 0.0);
+    //registry->AddComponent<RigidBodyComponent>(tank, glm::vec2(50.0, 0.0));
+    //tank.AddComponent<TransformComponent>(glm::vec2(10.0, 30.0), glm::vec2(1.0, 1.0), 0.0);
 }
 
 void Game::Update() {
@@ -106,6 +104,15 @@ void Game::Render() {
     // TODO: Render game objects
 
     SDL_RenderPresent(renderer);
+}
+
+void Game::Run() {
+    Setup();
+    while (isRunning) {
+        ProcessInput();
+        Update();
+        Render();
+    }
 }
 
 void Game::Destroy() {

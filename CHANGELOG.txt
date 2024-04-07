@@ -1,3 +1,11 @@
+v10
+  # Course section 11: Creating Entities & Components
+    + Finished first implementation of entity creation and added a Registry
+      instance to Game.cpp and used the Registry to create test entities
+    + Replaced raw pointers with smart pointers
+    + Finished first implementation of adding components to entities by
+      using Registry->AddComponent
+
 v9
   # Course section 10: ECS Implementation
     + Added Pool class (for storing a pool of components contigously)

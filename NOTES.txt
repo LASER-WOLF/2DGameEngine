@@ -133,6 +133,35 @@
     + SPDLog library (for C++ projects) here: https://github.com/gabime/spdlog
     + Log.c library (for C99 projects) here: https://github.com/rxi/log.c
 
+ - Smart pointers:
+    + In modern C++ we have something called smart pointers which is a tool to
+      help us with memory management
+    + Answer to the issue of the programmer having to always manage memory
+      by automatically destroying objects
+    + There are 3 types of smart pointers:
+      + unique_ptr
+      + shared_ptr
+      + weak_ptr
+    + unique_ptr:
+      + Example code for creating unique_ptr:
+        std:unique_ptr<Enemy> enemy = std::make_unique<Enemy>();
+      + We are creating one unique smart pointer (that cannot share its ownership)
+      + We use the function make_unique to create a unique smart pointer of 
+        the type Enemy
+      + Once the unique pointer loses its owner's scope, it detroys the 
+        enemy object automatically
+    + shared_ptr:
+      + Example code for creating shared_ptr:
+        std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>();
+      + The resource is only destroyed once every smart pointer goes out of scope
+      + We are creating one chared smart pointer (it can have multiple ownership)
+      + We use the function make_shared to create a shared smart pointer of 
+        the type Enemy
+      + As soon as the last smart pointer owning the resource goes out of scope, 
+        the object is detroyed automatically
+      + A shared pointer uses a reference count to keep track of how many 
+        objects are still being referenced
+
 ///////////////////////////////////////////////////////////////////////////////
 // #4 | OBJECT-ORIENTED PROGRAMMING (OOP)
 ///////////////////////////////////////////////////////////////////////////////
