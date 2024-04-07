@@ -1,3 +1,12 @@
+v11
+  # Course section 11: Creating Entities & Components
+    + Implemented Component functions to the entity class
+      (AddComponent/RemoveComponent/HasComponent/GetComponent)
+      by storing a pointer to the registry it was created in inside
+      the Entity class and calling the Component functions in the Registry
+      class from within the Entity class
+    (section completed)
+
 v10
   # Course section 11: Creating Entities & Components
     + Finished first implementation of entity creation and added a Registry
