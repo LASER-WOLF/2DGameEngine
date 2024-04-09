@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include "../ECS/ECS.h"
+#include "../AssetStore/AssetStore.h"
 #include <SDL2/SDL.h>
 
 const int FPS = 60;
@@ -15,6 +16,7 @@ class Game {
         SDL_Renderer* renderer;
 
         std::unique_ptr<Registry> registry;
+        std::unique_ptr<AssetStore> assetStore;
 
     public:
         Game();
@@ -22,6 +24,7 @@ class Game {
         void Initialize();
         void Run();
         void Setup();
+        void LoadLevel(int level);
         void ProcessInput();
         void Update();
         void Render();

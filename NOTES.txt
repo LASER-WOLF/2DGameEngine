@@ -6,11 +6,12 @@
 
  SECTIONS:
    #1: COURSE OVERVIEW
-   #2: C++
-   #3: OBJECT-ORIENTED PROGRAMMING (OOP)
-   #4: ENTITY-COMPONENT-SYSTEM (ECS) DESIGN
-   #5: OTHER NOTES
-   #6: LINKS AND RESOURCES
+   #2: GAME ENGINE
+   #3: C++
+   #4: OBJECT-ORIENTED PROGRAMMING (OOP)
+   #5: ENTITY-COMPONENT-SYSTEM (ECS) DESIGN
+   #6: OTHER NOTES
+   #7: LINKS AND RESOURCES
 
 ///////////////////////////////////////////////////////////////////////////////
 // #1 | COURSE OVERVIEW:
@@ -26,8 +27,8 @@
    [X]  #8: Organizing Game Objects
    [X]  #9: ECS Design
    [X] #10: ECS Implementation
-   [-] #11: Creating Entities & Components
-   [-] #12: Creating Systems
+   [X] #11: Creating Entities & Components
+   [X] #12: Creating Systems
    [-] #13: Managing Assets
    [-] #14: Animation System
    [-] #15: Collision System
@@ -48,8 +49,85 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// #2 | C++
+// #2 | GAME ENGINE
 ///////////////////////////////////////////////////////////////////////////////
+
+ - A game engine is a set of software tools or APIs created to optimize 
+   the development of a video gamei
+
+ - If you want to grow as a programmer, consider writing a very simple
+   game engine from first principles
+ 
+ - Game development is quite complex and is perhaps one of the few topics that
+   touches almost the entire computer science curriculum:
+   Algorithms & data structures, mathemathics, computer architechture,
+   computer graphics, compilers & formal languages, artificial intelligence,
+   networks, ui & ui, etc.
+
+ - Game engine programming is a lifelong journey, there is always new techniques,
+   new libraries and fancier ways to do things
+
+ - How to make a game engine:
+    + Choosing a programming language:
+      + C++ is still the most used programming language for game engine developers
+    + Windowing system & multi-platform hardware access:
+      + SDL, SFML or GLFW
+    + Game Loop:
+      + Process input -> Update Game -> Render (the holy trinity)
+    + Represent game objects in memory:
+      + Choosing a design pattern (ECS, OOP, etc.)
+    + Rendering:
+      + 2D or 3D?
+      + 3D Graphics API (to communicate with the GPU): OpenGL, Vulcan and DirectX
+      + Loading 3D mesh files like .obj (AssImp library)
+    + Physics:
+      + Gravity, friction, drag, collision, etc.
+      + Make own physics engine (veery time consuming) or use a third-party library
+        like: Box2D, Chipmunk2D, PhysX or Bullet
+    + UI:
+      + Dear ImGui is a great UI library
+      + A game engine doesn't neccessarily need to have a UI, game engine can be
+        just the code with the framework and APIs
+    + Scripting:
+      + We usually expose a simpler high-level scripting language to
+        level designers and other members of the team that might not be 
+        professional C++ programmers.
+      + Lua is a popular choice of gamedev scripting language
+      + You can build and link the entire Lua language with your C++ project,
+        or you can also use a C++ wrapper called Sol that helps us and handles
+        Lua using modern C++ syntax
+
+ - The game loop needs to be steady capped at a desired FPS with a 
+   fixed time step. We can use SDL_Delay() to achieve this.
+
+ - All position/physics updates need to take into account how much time has
+   passed since last frame and multiply the movement by this factor to achieve
+   the same results on different framerates. This is called Delta-Time.
+
+ - There are two types of Delta-Time:
+   
+   Variable Delta-Time:
+    + Con: Non-deterministic
+    + Pro: Game time equals real time
+   
+   Constant Delta-Time:
+    + Con: Fast game on high FPS, slow game on low FPS
+    + Pro: Deterministic
+   
+   For this project we will start by implementing a simple Variable Delta-Time.
+
+ - There are smarter and fancier ways to implement a controlled time step:
+     "Fix Your Timestep!" by Glenn Fiedler
+     https://gafferongames.com/post/fix_your_timestep/
+
+
+///////////////////////////////////////////////////////////////////////////////
+// #3 | C++
+///////////////////////////////////////////////////////////////////////////////
+
+ - C++ is an object-oriented programming language
+
+ - There is "modern" C++ and "classic" C++
 
  - Compiling:
      C++ Source Code 
@@ -322,7 +400,7 @@
    
 
 ///////////////////////////////////////////////////////////////////////////////
-// #4 | ENTITY-COMPONENT-SYSTEM (ECS) DESIGN
+// #5 | ENTITY-COMPONENT-SYSTEM (ECS) DESIGN
 ///////////////////////////////////////////////////////////////////////////////
 
  - In games there are a lot of "things": 
@@ -464,6 +542,8 @@
  - There are third-party ECS libraries that will have a lot better performance
    than what we will create in this project, but writing our own ECS system 
    from scratch will be a very good learning experience.
+    + EnTT ECS: https://github.com/skypjack/entt/wiki
+    + Flecs ECS: https://github.com/SanderMertens/flecs
 
  - Examples of ECS code:
     
@@ -540,37 +620,14 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// #5 | OTHER NOTES
+// #6 | OTHER NOTES
 ///////////////////////////////////////////////////////////////////////////////
 
- - Game loop: Process input -> Update Game -> Render (the holy trinity)
-
- - The game loop needs to be steady capped at a desired FPS with a 
-   fixed time step. We can use SDL_Delay() to achieve this.
-
- - All position/physics updates need to take into account how much time has
-   passed since last frame and multiply the movement by this factor to achieve
-   the same results on different framerates. This is called Delta-Time.
-
- - There are two types of Delta-Time:
-   
-   Variable Delta-Time:
-    + Con: Non-deterministic
-    + Pro: Game time equals real time
-   
-   Constant Delta-Time:
-    + Con: Fast game on high FPS, slow game on low FPS
-    + Pro: Deterministic
-   
-   For this project we will start by implementing a simple Variable Delta-Time.
-
- - There are smarter and fancier ways to implement a controlled time step:
-     "Fix Your Timestep!" by Glenn Fiedler
-     https://gafferongames.com/post/fix_your_timestep/
+ - ...
 
 
 ///////////////////////////////////////////////////////////////////////////////
-// #6 | LINKS AND RESOURCES
+// #7 | LINKS AND RESOURCES
 ///////////////////////////////////////////////////////////////////////////////
 
  - "How to make a simple entity-component-system in C++" by David Colson:
@@ -578,4 +635,17 @@
 
  - "Game Programming Patterns" by Robert Nystrom
     https://gameprogrammingpatterns.com/
+
+ - "Tools to make a Game Engine in C++"
+    https://youtu.be/qK-GTuhZwUg
+
+ - "Should You Make Your Own Game Engine?" by Gustavo Pezzi
+    https://pikuma.com/blog/why-make-a-game-engine
+
+ - "Handmade Hero" by Casey Muratori
+    https://www.youtube.com/playlist?list=PLnuhp3Xd9PYTt6svyQPyRO_AAuMWGxPzU
+
+ -  Learn OpenGL: https://learnopengl.com/
+
+ -  Basic Game Math: https://gamemath.com/
 

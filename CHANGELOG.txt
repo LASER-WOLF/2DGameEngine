@@ -1,3 +1,11 @@
+v13
+  # Course section 13: Managing Assets
+    + Added AssetStore for storing assets to be shared between entities
+    + Added support for Textures to the AssetStore
+    + Implemented storing of texture id in SpriteComponent and rendering of
+      SpriteComponent textures in the RenderSystem
+    + Added first implementation of the map
+
 v12
   # Course section 12: Creating Systems
     + Added MovementSystem
