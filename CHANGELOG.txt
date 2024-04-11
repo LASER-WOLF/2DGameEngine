@@ -1,5 +1,10 @@
+v15
+  # Course section 14: Animation System
+    + Added AnimationComponent and Animationsystem for animation sprites
+    (section completed)
+
 v14
-  # Course section 14: Managing Assets
+  # Course section 13: Managing Assets
     + Added z-index to the SpriteComponent and sorting of sprites
       based on z-index in the RenderSystem (on every frame)
 
