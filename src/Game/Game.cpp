@@ -86,32 +86,6 @@ void Game::LoadLevel(int level) {
     assetStore->AddTexture(renderer, "tilemap-image", "./assets/tilemaps/jungle.png");
 
     // Load the tilemap
-    //int mapTileX = 0;
-    //int mapTileY = 0;
-    //std::fstream mapFile;
-    //mapFile.open("./assets/tilemaps/jungle.map", std::ios::in);
-    //if(mapFile.is_open()) {
-    //    std::string mapLine;
-    //    while (getline(mapFile, mapLine)) {
-    //        mapTileX = 0;
-    //        std::stringstream mapLineStream(mapLine);
-    //        std::string mapTileIdString;
-    //        while (getline(mapLineStream, mapTileIdString, ',')) {
-    //            Entity tile = registry->CreateEntity();
-    //            int mapTileId = std::stoi(mapTileIdString);
-    //            int mapTileOffsetX = (mapTileId % 10) * 32;
-    //            int mapTileOffsetY = static_cast<int>(floor(mapTileId / 10) * 32);
-    //            //Logger::Log("Map tile id = " + std::to_string(mapTileId) + " (" + std::to_string(mapTileOffsetX) + ", " + std::to_string(mapTileOffsetY) + ") at position (" + std::to_string(mapTileX * 32) + ", " + std::to_string(mapTileY * 32) + ")");
-    //            tile.AddComponent<TransformComponent>(glm::vec2(mapTileX * 32, mapTileY * 32), glm::vec2(1.0, 1.0), 0.0);
-    //            tile.AddComponent<SpriteComponent>("jungle-image", 32, 32, mapTileOffsetX, mapTileOffsetY);
-    //            mapTileX++;
-    //        }
-    //        mapTileY++;
-    //    }
-    //    mapFile.close();
-    //}
-
-    // Load the tilemap
     int tileSize = 32;
     double tileScale = 2.0;
     int mapNumCols = 25;
@@ -131,21 +105,21 @@ void Game::LoadLevel(int level) {
 
             Entity tile = registry->CreateEntity();
             tile.AddComponent<TransformComponent>(glm::vec2(x * (tileScale * tileSize), y * (tileScale * tileSize)), glm::vec2(tileScale, tileScale), 0.0);
-            tile.AddComponent<SpriteComponent>("tilemap-image", tileSize, tileSize, srcRectX, srcRectY);
+            tile.AddComponent<SpriteComponent>("tilemap-image", tileSize, tileSize, 0, srcRectX, srcRectY);
         }
     }
 
     // Create an entity
     Entity tank = registry->CreateEntity();
     tank.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
-    tank.AddComponent<RigidBodyComponent>(glm::vec2(40.0, 0.0));
-    tank.AddComponent<SpriteComponent>("tank-image", 32, 32);
+    tank.AddComponent<RigidBodyComponent>(glm::vec2(30.0, 0.0));
+    tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 1);
     
     // Create an entity
     Entity truck = registry->CreateEntity();
-    truck.AddComponent<TransformComponent>(glm::vec2(50.0, 100.0), glm::vec2(1.0, 1.0), 0.0);
-    truck.AddComponent<RigidBodyComponent>(glm::vec2(0.0, 50.0));
-    truck.AddComponent<SpriteComponent>("truck-image", 32, 32);
+    truck.AddComponent<TransformComponent>(glm::vec2(10.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
+    truck.AddComponent<RigidBodyComponent>(glm::vec2(20.0, 0.0));
+    truck.AddComponent<SpriteComponent>("truck-image", 32, 32, 2);
 }
 
 void Game::Setup() {

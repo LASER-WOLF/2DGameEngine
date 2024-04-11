@@ -1,3 +1,8 @@
+v14
+  # Course section 14: Managing Assets
+    + Added z-index to the SpriteComponent and sorting of sprites
+      based on z-index in the RenderSystem (on every frame)
+
 v13
   # Course section 13: Managing Assets
     + Added AssetStore for storing assets to be shared between entities

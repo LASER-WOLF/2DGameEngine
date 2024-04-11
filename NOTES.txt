@@ -53,7 +53,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
  - A game engine is a set of software tools or APIs created to optimize 
-   the development of a video gamei
+   the development of a video game
 
  - If you want to grow as a programmer, consider writing a very simple
    game engine from first principles
@@ -62,7 +62,7 @@
    touches almost the entire computer science curriculum:
    Algorithms & data structures, mathemathics, computer architechture,
    computer graphics, compilers & formal languages, artificial intelligence,
-   networks, ui & ui, etc.
+   networks, UI & UX, etc.
 
  - Game engine programming is a lifelong journey, there is always new techniques,
    new libraries and fancier ways to do things
@@ -241,6 +241,7 @@
         objects are still being referenced
 
  - Cyclic dependencies: Be aware of cyclic dependencies! Not good.
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // #4 | OBJECT-ORIENTED PROGRAMMING (OOP)
@@ -623,7 +624,9 @@
 // #6 | OTHER NOTES
 ///////////////////////////////////////////////////////////////////////////////
 
- - ...
+ - Sorting of z-index of sprites is done on each frame in the Update function
+   in the RenderSystem. Should this be moved to only be done when
+   adding/removing SpriteComponent?
 
 
 ///////////////////////////////////////////////////////////////////////////////
