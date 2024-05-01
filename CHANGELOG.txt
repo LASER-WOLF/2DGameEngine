@@ -1,3 +1,9 @@
+v16
+ # Course section 15: Collision System
+    + Added BoxColliderComponent, CollisionSystem and RenderColliderSystem
+      for collision detection and debug rendering of the collision boxes
+    (section completed)
+
 v15
   # Course section 14: Animation System
     + Added AnimationComponent and Animationsystem for animation sprites
