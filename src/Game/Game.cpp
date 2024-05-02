@@ -11,6 +11,9 @@
 #include "../Systems/AnimationSystem.h"
 #include "../Systems/CollisionSystem.h"
 #include "../Systems/RenderColliderSystem.h"
+#include "../Systems/DamageSystem.h"
+#include "../Systems/KeyboardControlSystem.h"
+#include "../Events/KeyPressedEvent.h"
 #include <memory>
 #include <SDL2/SDL_image.h>
 #include <glm/glm.hpp>
@@ -24,6 +27,7 @@ Game::Game() {
     isDebug = false;
     registry = std::make_unique<Registry>();
     assetStore = std::make_unique<AssetStore>();
+    eventBus = std::make_unique<EventBus>();
     Logger::Log("Game constructor called!");
 }
 
@@ -79,6 +83,10 @@ void Game::ProcessInput() {
                 if (sdlEvent.key.keysym.sym == SDLK_d) {
                     isDebug = !isDebug;
                 }
+
+                // Emit KeyPressedEvent
+                eventBus->EmitEvent<KeyPressedEvent>(sdlEvent.key.keysym.sym);
+
                 break;
         }
     }
@@ -91,6 +99,8 @@ void Game::LoadLevel(int level) {
     registry->AddSystem<AnimationSystem>();
     registry->AddSystem<CollisionSystem>();
     registry->AddSystem<RenderColliderSystem>();
+    registry->AddSystem<DamageSystem>();
+    registry->AddSystem<KeyboardControlSystem>();
 
     // Adding assets to the asset store
     assetStore->AddTexture(renderer, "chopper-image", "./assets/images/chopper.png");
@@ -139,7 +149,7 @@ void Game::LoadLevel(int level) {
 
     // Create an entity
     Entity tank = registry->CreateEntity();
-    tank.AddComponent<TransformComponent>(glm::vec2(500.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
+    tank.AddComponent<TransformComponent>(glm::vec2(200.0, 10.0), glm::vec2(1.0, 1.0), 0.0);
     tank.AddComponent<RigidBodyComponent>(glm::vec2(-30.0, 0.0));
     tank.AddComponent<SpriteComponent>("tank-image", 32, 32, 1);
     tank.AddComponent<BoxColliderComponent>(32, 32);
@@ -169,13 +179,20 @@ void Game::Update() {
     // Store the "previous" frame time
     millisecsPreviousFrame = SDL_GetTicks();
 
+    // Reset all event handles for the current fram
+    eventBus->Reset();
+
+    // Perform the subscription of the events for all the systems
+    registry->GetSystem<DamageSystem>().SubscribeToEvents(eventBus);
+    registry->GetSystem<KeyboardControlSystem>().SubscribeToEvents(eventBus);
+
     // Update the registry to precess the entities that are waiting to be created/deleted
     registry->Update();
 
     // Invoke all the systems that need to update 
     registry->GetSystem<MovementSystem>().Update(deltaTime);
     registry->GetSystem<AnimationSystem>().Update();
-    registry->GetSystem<CollisionSystem>().Update();
+    registry->GetSystem<CollisionSystem>().Update(eventBus);
 }
 
 void Game::Render() {
