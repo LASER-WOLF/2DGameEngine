@@ -1,3 +1,14 @@
+v19
+ # Course section 18: Other Useful Components & Systems
+    + Added KeyboardControlSystem and KeyboardControlledComponent
+      to control entities with the keyboard
+    + Added camera follow system with corresponding component
+    + Added projectile emitter component and projectile emit system
+    + Added health component
+    + Added system to kill projectile when the lifetime ends
+    + Implemented shooting projectiles with space (for the player)
+    (section completed)
+
 v18
  # Course section 17: Event System
     + Added an event system using the publisher-subscriber design pattern

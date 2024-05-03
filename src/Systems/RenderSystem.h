@@ -15,7 +15,7 @@ class RenderSystem: public System {
             RequireComponent<SpriteComponent>();
         }
 
-        void Update(SDL_Renderer* renderer, std::unique_ptr<AssetStore>& assetStore) {
+        void Update(SDL_Renderer* renderer, std::unique_ptr<AssetStore>& assetStore, SDL_Rect& camera) {
             // Create a vector with both sprite and transform component of all entities
             struct RenderableEntity {
                 TransformComponent transformComponent;
@@ -44,8 +44,8 @@ class RenderSystem: public System {
 
                 // Set the destingation rectangle with the x, y position to be rendered
                 SDL_Rect dstRect = {
-                    static_cast<int>(transform.position.x),
-                    static_cast<int>(transform.position.y),
+                    static_cast<int>(transform.position.x - (sprite.isFixed ? 0 : camera.x)),
+                    static_cast<int>(transform.position.y - (sprite.isFixed ? 0 : camera.y)),
                     static_cast<int>(sprite.width * transform.scale.x),
                     static_cast<int>(sprite.height * transform.scale.y)
                 };
