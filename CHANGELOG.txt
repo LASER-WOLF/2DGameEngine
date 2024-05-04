@@ -1,3 +1,20 @@
+v21
+ # Course section 21: Displaying True-Type Fonts
+    + Added font support to the AssetStore
+    + Added text label component and text rendering system
+    + Added text/ui to show health of entities
+    (section completed)
+
+v20
+ # Course section 19: Tagging & Grouping Entities
+    + Implemented system for adding tags and groups (for entities)
+    + Added projectile damage to player/enemies
+    (section completed)
+ # Course section 20: Data-Oriented Design
+    + Made changes to the way Pools work to avoid data gaps
+      and have packed pools of components
+    (section completed)
+
 v19
  # Course section 18: Other Useful Components & Systems
     + Added KeyboardControlSystem and KeyboardControlledComponent

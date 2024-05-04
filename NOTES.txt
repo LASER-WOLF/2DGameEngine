@@ -29,14 +29,14 @@
    [X] #10: ECS Implementation
    [X] #11: Creating Entities & Components
    [X] #12: Creating Systems
-   [-] #13: Managing Assets
-   [-] #14: Animation System
-   [-] #15: Collision System
-   [-] #16: Killing Entities
-   [-] #17: Event System
-   [-] #18: Other Useful Components & Systems
-   [-] #19: Tagging & Grouping Entities
-   [-] #20: Data-Oriented Design
+   [X] #13: Managing Assets
+   [X] #14: Animation System
+   [X] #15: Collision System
+   [X] #16: Killing Entities
+   [X] #17: Event System
+   [X] #18: Other Useful Components & Systems
+   [X] #19: Tagging & Grouping Entities
+   [X] #20: Data-Oriented Design
    [-] #21: Displaying True-Type Fonts
    [-] #22: Dear ImGui
    [-] #23: Culling & Map Control
@@ -543,8 +543,8 @@
  - There are third-party ECS libraries that will have a lot better performance
    than what we will create in this project, but writing our own ECS system 
    from scratch will be a very good learning experience.
-    + EnTT ECS: https://github.com/skypjack/entt/wiki
-    + Flecs ECS: https://github.com/SanderMertens/flecs
+    + (C++) EnTT ECS:  https://github.com/skypjack/entt/wiki
+    + (C)   Flecs ECS: https://github.com/SanderMertens/flecs
 
  - Examples of ECS code:
     
@@ -648,7 +648,14 @@
  - "Handmade Hero" by Casey Muratori
     https://www.youtube.com/playlist?list=PLnuhp3Xd9PYTt6svyQPyRO_AAuMWGxPzU
 
- -  Learn OpenGL: https://learnopengl.com/
+ - Learn OpenGL: https://learnopengl.com/
 
- -  Basic Game Math: https://gamemath.com/
+ - Basic Game Math: https://gamemath.com/
+
+ - A Simple Entity Component System (ECS), Austin Morlan
+   https://austinmorlan.com/posts/entity_component_system/
+
+ - Nomad Game Engine, Niko Sava: https://savas.ca/nomad
+
+ - Mix ECS: https://github.com/arvidsson/Mix
 
