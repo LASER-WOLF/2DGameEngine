@@ -628,6 +628,29 @@
    in the RenderSystem. Should this be moved to only be done when
    adding/removing SpriteComponent?
 
+ - Retained and Immediate mode GUI
+   + Retained mode GUI
+     + A retained-mode API is declarative
+     + The application constructs a scene from primitives such as buttons,
+       inputs, rectangles, lines, etc.
+     + The graphics library stores a hierarchical model of the entire scene
+       in memory usually using some sort of object-oriented sctructure (DOM)
+     + We need to query the object-model to fetch or update values from
+       the UI widgets (input.GetText(), input.SetText(), etc.)
+     + Interaction is strongly based on Events
+     + To render a frame, the graphics library transforms the scene that is
+       stored in memory into a set of drawing commands
+   + Immediate mode GUI
+     + An immediate-mode API is imperative
+     + Each time a new frame is drawn, the application directly issues the
+       drawing commands.
+     + The graphics library does not store a scene model in memory
+       between frames.
+     + Instead, the application keeps track of the scene and the UI data.
+     + No events.. if a button is clicked, the render pass will execute
+       the logic that needs to be executes.
+     + Less memory overhead, no event change of flow, everything is drawn and
+       processed fame by frame
 
 ///////////////////////////////////////////////////////////////////////////////
 // #7 | LINKS AND RESOURCES

@@ -1,3 +1,10 @@
+v22
+ # Course section 22: Dear ImGui
+    + Implemented ImGui
+    + Added ImGui debug mode by pressing F1 that can be used to spawn
+      new enemies
+    (section completed)
+
 v21
  # Course section 21: Displaying True-Type Fonts
     + Added font support to the AssetStore
