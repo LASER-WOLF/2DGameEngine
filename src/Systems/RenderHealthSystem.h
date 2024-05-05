@@ -51,8 +51,8 @@ class RenderHealthSystem: public System {
                 int boxHeight = 6;
 
                 SDL_Rect dstRect = {
-                    static_cast<int>(transform.position.x + offsetX + camera.x),
-                    static_cast<int>(transform.position.y + offsetY + camera.y),
+                    static_cast<int>(transform.position.x + offsetX - camera.x),
+                    static_cast<int>(transform.position.y + offsetY - camera.y),
                     labelWidth,
                     labelHeight
                 };
@@ -62,14 +62,14 @@ class RenderHealthSystem: public System {
                 SDL_DestroyTexture(texture);
                 
                 SDL_Rect hpRect = {
-                    static_cast<int>(transform.position.x + offsetX + camera.x),
-                    static_cast<int>(transform.position.y + offsetY + 13 + camera.y),
+                    static_cast<int>(transform.position.x + offsetX - camera.x),
+                    static_cast<int>(transform.position.y + offsetY + 13 - camera.y),
                     static_cast<int>(boxWidth),
                     static_cast<int>(boxHeight)
                 };
                 SDL_Rect hpOutlineRect = {
-                    static_cast<int>(transform.position.x + offsetX + camera.x),
-                    static_cast<int>(transform.position.y + offsetY + 13 + camera.y),
+                    static_cast<int>(transform.position.x + offsetX - camera.x),
+                    static_cast<int>(transform.position.y + offsetY + 13 - camera.y),
                     static_cast<int>(boxWidthFull),
                     static_cast<int>(boxHeight)
                 };

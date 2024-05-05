@@ -1,3 +1,11 @@
+v23
+ # Course section 23: Culling & Map Control
+    + Implemented killing of entities outside the map limits
+    + Implemented flipping sprites on collision
+    + Added boundries for player movement to limit the player within the map limits
+    + Implemented culling for sprites outside the camera view
+    (section completed)
+
 v22
  # Course section 22: Dear ImGui
     + Implemented ImGui
