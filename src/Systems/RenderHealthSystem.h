@@ -32,7 +32,7 @@ class RenderHealthSystem: public System {
                 }
 
                 SDL_Surface* surface = TTF_RenderText_Blended(
-                    assetStore->GetFont("charriot-font-small"), 
+                    assetStore->GetFont("pico8-font-6"), 
                     ("HP: " + std::to_string(healthPercentage) + "%").c_str(),
                     color
                 );

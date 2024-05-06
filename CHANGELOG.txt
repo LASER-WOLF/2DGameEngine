@@ -1,3 +1,21 @@
+v24
+ # Course section 24: Lua Scripting
+    + Implemented Sol to enable Lua scripting for the C++ project
+    + Seperated level loading to a LevelLoader class
+    + Implemented level loading from a lua file
+    + Added script component and system to handle entity scripting from lua file
+    + Implemented Lua / C++ binding of functions
+    (section completed)
+ 
+ # Course section 25: Next Steps
+    (section completed)
+
+ # Course section 26: Bonus: The Map Editor
+    (section completed)
+
+ # Course section 27: Moving Forward
+    (section completed)
+
 v23
  # Course section 23: Culling & Map Control
     + Implemented killing of entities outside the map limits

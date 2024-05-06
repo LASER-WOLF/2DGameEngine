@@ -37,16 +37,15 @@
    [X] #18: Other Useful Components & Systems
    [X] #19: Tagging & Grouping Entities
    [X] #20: Data-Oriented Design
-   [-] #21: Displaying True-Type Fonts
-   [-] #22: Dear ImGui
-   [-] #23: Culling & Map Control
-   [-] #24: Lua Scripting
-   [-] #25: Next Steps
-   [-] #26: Bonus: The Map Editor
-   [-] #27: Moving Forward
+   [X] #21: Displaying True-Type Fonts
+   [X] #22: Dear ImGui
+   [X] #23: Culling & Map Control
+   [X] #24: Lua Scripting
+   [X] #25: Next Steps
+   [X] #26: Bonus: The Map Editor
+   [X] #27: Moving Forward
   
    [X] COMPLETED / [-] NOT COMPLETED
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // #2 | GAME ENGINE
@@ -624,9 +623,18 @@
 // #6 | OTHER NOTES
 ///////////////////////////////////////////////////////////////////////////////
 
- - Sorting of z-index of sprites is done on each frame in the Update function
-   in the RenderSystem. Should this be moved to only be done when
-   adding/removing SpriteComponent?
+ - Lua
+   + Lua is a very popular game scripting language
+   + From its inception, Lua was designed to be a scripting language and
+     not a stand-alone language
+   + Lua is small, fast, portable, and extensible
+   + Lua can be easily integrated with existing C & C++ code by using its
+     very easy C API
+   + We will learn how to integrate Lua with our native C++ code. We will use
+     a library called Sol that works a as a modern C++ wrapper 
+     around Lua's classic C API
+   + Sol allows us to be very productive and hit the ground running 
+     with C++ and Lua
 
  - Retained and Immediate mode GUI
    + Retained mode GUI

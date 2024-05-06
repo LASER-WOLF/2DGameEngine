@@ -75,10 +75,14 @@ class MovementSystem: public System {
 
                 // Prevent player from moving outside the map
                 if (entity.HasTag("player")) {
-                    if (transform.position.x < 0) { transform.position.x = 0; }
-                    else if (transform.position.x > Game::mapWidth) { transform.position.x = Game::mapWidth; }
-                    if (transform.position.y < 0) { transform.position.y = 0; }
-                    else if (transform.position.y > Game::mapHeight) { transform.position.y = Game::mapHeight; }
+                    int paddingLeft = 10;
+                    int paddingTop = 10;
+                    int paddingRight = 50;
+                    int paddingBottom = 50;
+                    transform.position.x = transform.position.x < paddingLeft ? paddingLeft : transform.position.x;
+                    transform.position.x = transform.position.x > Game::mapWidth - paddingRight ? Game::mapWidth - paddingRight : transform.position.x;
+                    transform.position.y = transform.position.y < paddingTop ? paddingTop : transform.position.y;
+                    transform.position.y = transform.position.y > Game::mapHeight - paddingBottom ? Game::mapHeight - paddingBottom : transform.position.y;
                 }
             }
         }

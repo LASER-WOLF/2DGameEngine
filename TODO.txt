@@ -1,0 +1,26 @@
+///////////////////////////////////////////////////////////////////////////////
+// TODO:
+///////////////////////////////////////////////////////////////////////////////
+
+ - Sorting of z-index of sprites is done on each frame in the Update 
+   function in the RenderSystem. Should this be moved to only be done when
+   adding/removing SpriteComponent?
+
+ - More work on debug menu with ImGui (move logger from console to ImGui)
+
+ - Checking for bugs
+ 
+ - Check whole project code, refactor and clean up
+
+ - Add behaviour for NPCs
+
+ - Change sprite when changing move direction
+
+ - Collision with water
+
+ - Add more GUI (fuel, altitude, speed, ammo, score, etc.)
+
+ - Add sound
+
+ - Add level editor
+
